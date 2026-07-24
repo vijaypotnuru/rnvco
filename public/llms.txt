@@ -1,0 +1,25 @@
+# RNVCO
+
+> RNVCO is a unit of Rycoon building India's sovereign AI data centre network — 2.4 GWh planned capacity across three deployment phases. Coming soon.
+
+RNVCO provides purpose-built GPU and AI compute infrastructure designed for data sovereignty, enterprise and government workloads, and pan-India low-latency coverage.
+
+## Core
+
+- [Homepage](https://rnvco.com/): Overview of RNVCO capacity, three-phase roadmap, vision, and early interest registration
+- [Deployment Phases](https://rnvco.com/#phases): Phase 1 (400 MWh launching), Phase 2 (1.0 GWh planned), Phase 3 (1.0 GWh planned)
+- [Register Interest](https://rnvco.com/#waitlist): Early interest form for enterprises, investors, government bodies, and technology partners
+
+## Facts
+
+- Total planned capacity: 2.4 GWh
+- Phase 1 launch capacity: 400 MWh
+- Parent company: Rycoon
+- Focus: Sovereign AI compute, Tier 4-style facilities, DPDP Act 2023 and MEITY compliance
+- Planned hubs: Hyderabad, Mumbai, Delhi, Bangalore, Chennai
+
+## Optional
+
+- [llms-full.txt](https://rnvco.com/llms-full.txt): Full plain-text summary of the RNVCO homepage for AI agents
+- [sitemap.xml](https://rnvco.com/sitemap.xml): Machine-readable sitemap
+- [robots.txt](https://rnvco.com/robots.txt): Crawler access rules

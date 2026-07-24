@@ -118,13 +118,5 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
+  /* Landing page owns body styles via rnvco.css — keep shadcn tokens only */
 }

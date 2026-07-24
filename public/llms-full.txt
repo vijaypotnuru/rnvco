@@ -1,0 +1,45 @@
+# RNVCO — Full Site Summary
+
+RNVCO is a unit of Rycoon building sovereign AI data centre infrastructure across India. The project is coming soon and not yet operational. Early interest registration is open.
+
+## Positioning
+
+India's futuristic AI infrastructure. Planned total network capacity: 2.4 GWh. Pan-India AI data centre network designed for sovereign compute, enterprise readiness, and government compliance.
+
+## Capacity Roadmap
+
+### Phase 1 — Foundation Layer (Active · Launching)
+- Capacity: 400 MWh
+- Share of total: ~17% of 2.4 GWh
+- Purpose: First sovereign AI data centre infrastructure tranche establishing RNVCO as India's premier AI compute provider
+
+### Phase 2 — Scale Layer (Planned)
+- Capacity: 1.0 GWh
+- Purpose: Horizontal expansion across multiple Indian locations to multiply compute density and geographic redundancy
+
+### Phase 3 — Dominance Layer (Planned)
+- Capacity: 1.0 GWh
+- Purpose: Complete the 2.4 GWh network for enterprises, research institutions, and next-generation AI systems
+
+## What RNVCO Is Building
+
+1. Sovereign AI Compute — GPU and AI infrastructure that keeps India's data and intelligence within Indian borders
+2. Futuristic Data Centres — Immersion cooling, renewable energy integration, ultra-low latency fibre, Tier 4 redundancy architecture
+3. Pan-India Network — Facilities planned across Hyderabad, Mumbai, Delhi, Bangalore, and Chennai for sub-10ms latency to major hubs
+4. Enterprise & Government Ready — Designed for large enterprises, financial institutions, government bodies, and research organisations; DPDP Act 2023 and MEITY compliant
+
+## Audience
+
+Infrastructure partners, enterprise clients, government / PSU bodies, investors, technology partners, and research institutions.
+
+## Contact / Next Step
+
+Register interest at https://rnvco.com/#waitlist. RNVCO will reach out as Phase 1 approaches commissioning.
+
+## Entity
+
+- Brand: RNVCO
+- Parent: Rycoon
+- Website: https://rnvco.com
+- Market: India
+- Category: AI infrastructure / sovereign data centres
