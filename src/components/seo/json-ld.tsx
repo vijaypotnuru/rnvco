@@ -51,7 +51,7 @@ export function JsonLd() {
       "@type": "WebPage",
       "@id": webpageId,
       url: SITE_URL,
-      name: `${SITE_NAME} — AI Infrastructure. Coming Soon.`,
+      name: `${SITE_NAME} AI Infrastructure. Coming Soon.`,
       description: SITE_DESCRIPTION,
       isPartOf: { "@id": websiteId },
       about: { "@id": organizationId },

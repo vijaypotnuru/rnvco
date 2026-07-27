@@ -3,7 +3,7 @@ export const SITE_URL =
 
 export const SITE_NAME = "RNVCO";
 export const SITE_TAGLINE = "AI Infrastructure. Coming Soon.";
-export const SITE_TITLE = `${SITE_NAME} — ${SITE_TAGLINE}`;
+export const SITE_TITLE = `${SITE_NAME} - ${SITE_TAGLINE}`;
 export const SITE_DESCRIPTION =
   "India's futuristic AI infrastructure. 2.4 GWh sovereign AI data centre network across India. Coming soon.";
 export const SITE_KEYWORDS = [
