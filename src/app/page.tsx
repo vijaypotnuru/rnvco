@@ -93,7 +93,7 @@ export default function Home() {
               <div className="phase-unit">Initial Deployment Capacity</div>
               <div className="phase-title">Foundation Layer</div>
               <div className="phase-body">
-                The first 400 MWh of sovereign AI data centre infrastructure —
+                The first 400 MWh of sovereign AI data centre infrastructure
                 commissioned, engineered, and operational. Establishing RNVCO as
                 India&apos;s premier AI compute provider from day one.
               </div>
@@ -120,7 +120,7 @@ export default function Home() {
               <div className="phase-unit">Expansion Capacity</div>
               <div className="phase-title">Scale Layer</div>
               <div className="phase-body">
-                Massive horizontal expansion across multiple locations in India —
+                Massive horizontal expansion across multiple locations in India
                 multiplying compute density, increasing geographic redundancy,
                 and deepening the sovereign AI infrastructure grid.
               </div>
@@ -147,7 +147,7 @@ export default function Home() {
               <div className="phase-unit">Full Network Capacity</div>
               <div className="phase-title">Dominance Layer</div>
               <div className="phase-body">
-                Completing the 2.4 GWh network — the full-scale sovereign AI
+                Completing the 2.4 GWh network the full-scale sovereign AI
                 infrastructure platform that will power India&apos;s next
                 generation of AI systems, enterprises, and research institutions.
               </div>
@@ -226,7 +226,7 @@ export default function Home() {
               <div className="vis-title">Sovereign AI Compute</div>
               <div className="vis-body">
                 Purpose-built GPU and AI compute infrastructure that keeps
-                India&apos;s data and intelligence within Indian borders —
+                India&apos;s data and intelligence within Indian borders
                 sovereign, secure, and built for the age of generative AI.
               </div>
               <span className="vis-tag">Data Sovereignty</span>
@@ -236,7 +236,7 @@ export default function Home() {
               <div className="vis-num">02</div>
               <div className="vis-title">Futuristic Data Centres</div>
               <div className="vis-body">
-                Next-generation facility design — immersion cooling, renewable
+                Next-generation facility design immersion cooling, renewable
                 energy integration, ultra-low latency fibre, and Tier 4
                 redundancy architecture built for AI workloads at petawatt
                 scale.
@@ -249,7 +249,7 @@ export default function Home() {
               <div className="vis-title">Pan-India Network</div>
               <div className="vis-body">
                 A distributed network of strategically located facilities across
-                India — Hyderabad, Mumbai, Delhi, Bangalore, Chennai — designed
+                India - Hyderabad, Mumbai, Delhi, Bangalore, Chennai designed
                 for sub-10ms latency to every major economic hub.
               </div>
               <span className="vis-tag">National Grid</span>
@@ -261,7 +261,7 @@ export default function Home() {
               <div className="vis-body">
                 Designed from the ground up for India&apos;s largest
                 enterprises, financial institutions, government bodies, and
-                research organisations — fully DPDP Act 2023 and MEITY
+                research organisations fully DPDP Act 2023 and MEITY
                 compliant.
               </div>
               <span className="vis-tag">DPDP · MEITY Compliant</span>
@@ -301,7 +301,7 @@ export default function Home() {
               IN <em>LINE</em>
             </h2>
             <p className="waitlist-intro reveal">
-              RNVCO is not yet operational. Register your interest now —
+              RNVCO is not yet operational. Register your interest now
               infrastructure partners, enterprise clients, government bodies,
               and investors are welcome.
             </p>

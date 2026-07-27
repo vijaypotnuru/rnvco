@@ -1,9 +1,33 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useRef, useEffect } from "react";
+
+const CATEGORIES = [
+  "Enterprise Client",
+  "Investor",
+  "Government / PSU",
+  "Technology Partner",
+  "Research Institution",
+  "Other"
+];
 
 export function WaitlistForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [category, setCategory] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,25 +78,55 @@ export function WaitlistForm() {
           />
         </div>
         <div className="wl-group">
-          <label className="wl-lbl" htmlFor="wl-category">
+          <label className="wl-lbl">
             I represent
           </label>
-          <select
-            id="wl-category"
-            className="wl-inp"
-            name="category"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select category
-            </option>
-            <option>Enterprise Client</option>
-            <option>Investor</option>
-            <option>Government / PSU</option>
-            <option>Technology Partner</option>
-            <option>Research Institution</option>
-            <option>Other</option>
-          </select>
+          <div className="wl-select-wrapper" ref={dropdownRef}>
+            <button
+              type="button"
+              className={`wl-select-trigger ${isOpen ? "active" : ""}`}
+              onClick={() => setIsOpen(!isOpen)}
+              aria-haspopup="listbox"
+              aria-expanded={isOpen}
+            >
+              <span className={category ? "" : "placeholder"}>
+                {category || "Select category"}
+              </span>
+              <svg
+                className="arrow"
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L5 5L9 1"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <ul className={`wl-select-options ${isOpen ? "open" : ""}`} role="listbox">
+              {CATEGORIES.map((cat) => (
+                <li
+                  key={cat}
+                  className={`wl-select-option ${category === cat ? "selected" : ""}`}
+                  role="option"
+                  aria-selected={category === cat}
+                  onClick={() => {
+                    setCategory(cat);
+                    setIsOpen(false);
+                  }}
+                >
+                  {cat}
+                </li>
+              ))}
+            </ul>
+            <input type="hidden" name="category" value={category} required />
+          </div>
         </div>
       </div>
       <div className="wl-group">
@@ -102,3 +156,4 @@ export function WaitlistForm() {
     </form>
   );
 }
+
