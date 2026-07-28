@@ -36,7 +36,9 @@ export default function Home() {
           </h1>
 
           <p className="hero-sub">
-            <em>2.4 GWh</em> · AI Data Centre Network · Across India
+            <span className="nobr"><em>2.4 GWh</em></span>
+            <span className="nobr"> · AI Data Centre Network</span>
+            <span className="nobr"> · Across India</span>
           </p>
 
           <div className="hero-stats">
@@ -73,7 +75,7 @@ export default function Home() {
         </section>
 
         <section className="phases" id="phases" aria-labelledby="phases-heading">
-          <div className="sec-label reveal">Deployment Roadmap</div>
+          <div className="hero-tag reveal">Deployment Roadmap</div>
           <h2 id="phases-heading" className="rnv-h2 reveal">
             Three Phases.
             <br />
@@ -170,7 +172,7 @@ export default function Home() {
           aria-labelledby="capacity-heading"
         >
           <div className="pw-left reveal">
-            <div className="sec-label" id="capacity-heading">
+            <div className="hero-tag" id="capacity-heading">
               Total Network Power
             </div>
             <div className="pw-num">
@@ -213,7 +215,7 @@ export default function Home() {
         </section>
 
         <section className="vision" id="vision" aria-labelledby="vision-heading">
-          <div className="sec-label reveal">What We Are Building</div>
+          <div className="hero-tag reveal">What We Are Building</div>
           <h2 id="vision-heading" className="rnv-h2 reveal">
             The Infrastructure
             <br />
@@ -270,7 +272,7 @@ export default function Home() {
         </section>
 
         <section className="faq" id="faq" aria-labelledby="faq-heading">
-          <div className="sec-label reveal">FAQ</div>
+          <div className="hero-tag reveal">FAQ</div>
           <h2 id="faq-heading" className="rnv-h2 reveal">
             Clear Answers.
             <br />
@@ -353,17 +355,6 @@ export default function Home() {
                 </li>
                 <li>
                   <a href="#waitlist">Register Interest</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className="footer-col-title">Discover</div>
-              <ul className="footer-links">
-                <li>
-                  <a href="/llms.txt">llms.txt</a>
-                </li>
-                <li>
-                  <a href="/sitemap.xml">Sitemap</a>
                 </li>
               </ul>
             </div>

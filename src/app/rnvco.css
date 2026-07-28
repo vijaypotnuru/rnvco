@@ -29,7 +29,6 @@ body.rnvco-body {
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: crosshair;
 }
 
 body.rnvco-body::-webkit-scrollbar {
@@ -49,13 +48,11 @@ body.rnvco-body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.015) 2px,
-    rgba(0, 0, 0, 0.015) 4px
-  );
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 4px);
   pointer-events: none;
   z-index: 999;
 }
@@ -75,11 +72,9 @@ body.rnvco-body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse at 50% 0%,
-    rgba(200, 146, 42, 0.07) 0%,
-    transparent 60%
-  );
+  background: radial-gradient(ellipse at 50% 0%,
+      rgba(200, 146, 42, 0.07) 0%,
+      transparent 60%);
 }
 
 /* NAV */
@@ -166,10 +161,12 @@ body.rnvco-body::before {
 }
 
 @keyframes tagPulse {
+
   0%,
   100% {
     box-shadow: 0 0 20px var(--rnv-orange-glow);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(232, 98, 10, 0.5);
   }
@@ -177,9 +174,10 @@ body.rnvco-body::before {
 
 .nav-unit {
   font-family: var(--rnv-cond);
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--rnv-silver-dim);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--rnv-silver);
   text-transform: uppercase;
 }
 
@@ -212,9 +210,10 @@ body.rnvco-body::before {
 
 .hero-tag {
   font-family: var(--rnv-cond);
-  font-size: 11px;
-  letter-spacing: 6px;
-  color: var(--rnv-orange);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--rnv-orange-dim);
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -228,7 +227,7 @@ body.rnvco-body::before {
   content: "";
   width: 30px;
   height: 1px;
-  background: var(--rnv-orange);
+  background: var(--rnv-orange-dim);
 }
 
 .hero-title {
@@ -255,7 +254,7 @@ body.rnvco-body::before {
   font-size: clamp(18px, 2.5vw, 32px);
   font-weight: 300;
   letter-spacing: 4px;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
   text-transform: uppercase;
   margin-bottom: 48px;
   opacity: 0;
@@ -265,6 +264,11 @@ body.rnvco-body::before {
 .hero-sub em {
   color: var(--rnv-cyan);
   font-style: normal;
+}
+
+.nobr {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .hero-stats {
@@ -302,8 +306,9 @@ body.rnvco-body::before {
 .hstat-label {
   font-family: var(--rnv-cond);
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: 3px;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
   text-transform: uppercase;
 }
 
@@ -327,14 +332,12 @@ body.rnvco-body::before {
   border: none;
   cursor: pointer;
   transition: all 0.3s;
-  clip-path: polygon(
-    0 0,
-    calc(100% - 10px) 0,
-    100% 10px,
-    100% 100%,
-    10px 100%,
-    0 calc(100% - 10px)
-  );
+  clip-path: polygon(0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px));
 }
 
 .btn-primary:hover {
@@ -350,7 +353,7 @@ body.rnvco-body::before {
   text-transform: uppercase;
   padding: 15px 40px;
   background: transparent;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
   text-decoration: none;
   border: 1px solid var(--rnv-silver-faint);
   transition: all 0.3s;
@@ -373,9 +376,10 @@ body.rnvco-body::before {
 
 .sec-label {
   font-family: var(--rnv-cond);
-  font-size: 11px;
-  letter-spacing: 6px;
-  color: var(--rnv-orange);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--rnv-orange-dim);
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -455,6 +459,7 @@ body.rnvco-body::before {
   gap: 8px;
   font-family: var(--rnv-cond);
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
   padding: 5px 14px;
@@ -463,14 +468,14 @@ body.rnvco-body::before {
 }
 
 .phase-1 .phase-badge {
-  border-color: var(--rnv-orange);
-  color: var(--rnv-orange);
+  border-color: var(--rnv-orange-dim);
+  color: var(--rnv-orange-dim);
 }
 
 .phase-2 .phase-badge,
 .phase-3 .phase-badge {
-  border-color: var(--rnv-iron);
-  color: var(--rnv-silver-dim);
+  border-color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
 }
 
 .phase-badge .dot {
@@ -488,6 +493,14 @@ body.rnvco-body::before {
 .phase-2 .dot,
 .phase-3 .dot {
   background: var(--rnv-iron);
+  transition: all 0.3s ease;
+}
+
+.phase-2:hover .dot,
+.phase-3:hover .dot {
+  background: var(--rnv-orange);
+  box-shadow: 0 0 8px var(--rnv-orange);
+  animation: blink 1.5s ease-in-out infinite;
 }
 
 .phase-num {
@@ -534,14 +547,15 @@ body.rnvco-body::before {
 
 .phase-mwh .unit-faint {
   font-size: 28px;
-  color: var(--rnv-silver-faint);
+  color: var(--rnv-silver-dim);
 }
 
 .phase-unit {
   font-family: var(--rnv-cond);
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: 3px;
-  color: var(--rnv-silver-faint);
+  color: var(--rnv-silver);
   text-transform: uppercase;
   margin-bottom: 24px;
 }
@@ -559,7 +573,7 @@ body.rnvco-body::before {
 .phase-body {
   font-size: 14px;
   line-height: 1.75;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
 }
 
 .phase-bar {
@@ -592,8 +606,9 @@ body.rnvco-body::before {
 .bar-label {
   font-family: var(--rnv-cond);
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: 2px;
-  color: var(--rnv-silver-faint);
+  color: var(--rnv-silver-dim);
   text-transform: uppercase;
   margin-top: 8px;
   display: flex;
@@ -601,10 +616,12 @@ body.rnvco-body::before {
 }
 
 @keyframes blink {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.3;
   }
@@ -648,8 +665,9 @@ body.rnvco-body::before {
 .pw-desc {
   font-family: var(--rnv-cond);
   font-size: 14px;
+  font-weight: 400;
   letter-spacing: 3px;
-  color: var(--rnv-silver-faint);
+  color: var(--rnv-silver);
   text-transform: uppercase;
   border-left: 2px solid var(--rnv-orange);
   padding-left: 16px;
@@ -678,8 +696,9 @@ body.rnvco-body::before {
 .pw-row-ph {
   font-family: var(--rnv-cond);
   font-size: 10px;
+  font-weight: 600;
   letter-spacing: 3px;
-  color: var(--rnv-silver-faint);
+  color: var(--rnv-silver);
   text-transform: uppercase;
 }
 
@@ -721,7 +740,7 @@ body.rnvco-body::before {
 
 .ph2-val,
 .ph3-val {
-  color: var(--rnv-silver-faint);
+  color: var(--rnv-silver);
 }
 
 .pw-total-row {
@@ -735,6 +754,7 @@ body.rnvco-body::before {
 .pw-total-lbl {
   font-family: var(--rnv-cond);
   font-size: 11px;
+  font-weight: 600;
   letter-spacing: 4px;
   color: var(--rnv-silver-dim);
   text-transform: uppercase;
@@ -744,7 +764,7 @@ body.rnvco-body::before {
   font-family: var(--rnv-display);
   font-size: 32px;
   letter-spacing: 2px;
-  color: var(--rnv-orange-light);
+  color: var(--rnv-orange);
 }
 
 /* VISION */
@@ -770,8 +790,8 @@ body.rnvco-body::before {
 
 .vis-num {
   font-family: var(--rnv-display);
-  font-size: 60px;
-  color: var(--rnv-iron);
+  font-size: 80px;
+  color: var(--rnv-silver-dim);
   line-height: 1;
   margin-bottom: 16px;
 }
@@ -789,16 +809,17 @@ body.rnvco-body::before {
 .vis-body {
   font-size: 15px;
   line-height: 1.8;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
 }
 
 .vis-tag {
   display: inline-block;
   margin-top: 18px;
   font-family: var(--rnv-cond);
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 3px;
-  color: var(--rnv-orange);
+  color: var(--rnv-orange-dim);
   text-transform: uppercase;
   border-bottom: 1px solid var(--rnv-orange-dim);
   padding-bottom: 3px;
@@ -842,7 +863,7 @@ body.rnvco-body::before {
 .faq-a {
   font-size: 15px;
   line-height: 1.75;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
   margin: 0;
 }
 
@@ -874,7 +895,7 @@ body.rnvco-body::before {
 
 .waitlist-intro {
   font-size: 15px;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
   max-width: 480px;
   margin: 0 auto;
 }
@@ -901,8 +922,9 @@ body.rnvco-body::before {
 
 .wl-lbl {
   font-family: var(--rnv-cond);
-  font-size: 9px;
-  letter-spacing: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
   color: var(--rnv-silver-dim);
   text-transform: uppercase;
 }
@@ -999,6 +1021,23 @@ body.rnvco-body::before {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.wl-select-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wl-select-options::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wl-select-options::-webkit-scrollbar-thumb {
+  background: var(--rnv-iron);
+  border-radius: 3px;
+}
+
+.wl-select-options::-webkit-scrollbar-thumb:hover {
+  background: var(--rnv-orange-dim);
+}
+
 .wl-select-options.open {
   opacity: 1;
   transform: translateY(0);
@@ -1006,24 +1045,27 @@ body.rnvco-body::before {
 }
 
 .wl-select-option {
-  padding: 12px 16px;
+  padding: 14px 20px;
   cursor: pointer;
   font-size: 14px;
   color: var(--rnv-silver);
-  transition: all 0.2s;
+  transition: all 0.25s ease;
   text-align: left;
+  border-left: 3px solid transparent;
 }
 
 .wl-select-option:hover {
   background: var(--rnv-steel2);
-  color: var(--rnv-orange);
-  padding-left: 20px;
+  color: var(--rnv-orange-dim);
+  padding-left: 24px;
+  border-left-color: var(--rnv-orange-dim);
 }
 
 .wl-select-option.selected {
   background: var(--rnv-steel3);
-  color: var(--rnv-orange);
+  color: var(--rnv-orange-dim);
   font-weight: 500;
+  border-left-color: var(--rnv-orange-dim);
 }
 
 .wl-submit {
@@ -1040,14 +1082,12 @@ body.rnvco-body::before {
   cursor: pointer;
   transition: all 0.3s;
   margin-top: 6px;
-  clip-path: polygon(
-    0 0,
-    calc(100% - 10px) 0,
-    100% 10px,
-    100% 100%,
-    10px 100%,
-    0 calc(100% - 10px)
-  );
+  clip-path: polygon(0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px));
 }
 
 .wl-submit:hover {
@@ -1078,7 +1118,7 @@ body.rnvco-body::before {
 
 .wl-success-body {
   font-size: 14px;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
 }
 
 /* FOOTER */
@@ -1112,16 +1152,17 @@ body.rnvco-body::before {
 
 .footer-tag {
   font-family: var(--rnv-cond);
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--rnv-silver-dim);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--rnv-silver);
   text-transform: uppercase;
   margin-bottom: 12px;
 }
 
 .footer-unit {
   font-size: 13px;
-  color: var(--rnv-silver-faint);
+  color: var(--rnv-silver);
   line-height: 1.6;
 }
 
@@ -1137,9 +1178,10 @@ body.rnvco-body::before {
 
 .footer-col-title {
   font-family: var(--rnv-cond);
-  font-size: 9px;
-  letter-spacing: 4px;
-  color: var(--rnv-orange);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--rnv-orange-dim);
   text-transform: uppercase;
   margin-bottom: 16px;
 }
@@ -1155,7 +1197,7 @@ body.rnvco-body::before {
 
 .footer-links a {
   font-size: 13px;
-  color: var(--rnv-silver-dim);
+  color: var(--rnv-silver);
   text-decoration: none;
   transition: color 0.3s;
   font-family: var(--rnv-cond);
@@ -1163,7 +1205,7 @@ body.rnvco-body::before {
 }
 
 .footer-links a:hover {
-  color: var(--rnv-orange-light);
+  color: var(--rnv-orange-dim);
 }
 
 .footer-bottom {
@@ -1177,9 +1219,10 @@ body.rnvco-body::before {
 
 .footer-copy {
   font-family: var(--rnv-cond);
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 500;
   letter-spacing: 2px;
-  color: var(--rnv-silver-faint);
+  color: var(--rnv-silver);
   text-transform: uppercase;
 }
 
@@ -1189,6 +1232,7 @@ body.rnvco-body::before {
     opacity: 0;
     transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1218,6 +1262,7 @@ body.rnvco-body::before {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -1227,6 +1272,7 @@ body.rnvco-body::before {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(-360deg);
   }
@@ -1249,16 +1295,19 @@ body.rnvco-body::before {
 }
 
 @keyframes powerPulse {
+
   0%,
   100% {
     opacity: 0.6;
   }
+
   50% {
     opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .ring-outer,
   .ring-mid,
   .ring-pulse,
@@ -1285,6 +1334,7 @@ body.rnvco-body::before {
 }
 
 @media (max-width: 1024px) {
+
   .rnv-nav,
   .hero,
   .phases,
@@ -1346,6 +1396,17 @@ body.rnvco-body::before {
 
   .hero {
     padding: 110px 20px 60px;
+  }
+
+  .hero-title {
+    font-size: clamp(48px, 12vw, 72px);
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 4.5vw, 18px);
+    letter-spacing: 2px;
+    line-height: 1.4;
+    margin-bottom: 32px;
   }
 
   .power-ring {
