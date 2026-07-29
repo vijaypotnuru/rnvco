@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState, useRef, useEffect } from "react";
+import { submitWaitlist } from "@/app/actions";
 
 const CATEGORIES = [
   "Enterprise Client",
@@ -15,23 +16,51 @@ export function WaitlistForm() {
   const [submitted, setSubmitted] = useState(false);
   const [category, setCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    function handleClickOutside(event: Event) {
+      const target = event.target as HTMLElement;
+      // Check if click is outside the select wrapper using closest helper
+      if (target && !target.closest(".wl-select-wrapper")) {
         setIsOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function toggleDropdown() {
+    setIsOpen((prev) => !prev);
+  }
+
+  function handleSelectOption(cat: string) {
+    setCategory(cat);
+    setIsOpen(false);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    setIsLoading(true);
+    setErrorMsg("");
+
+    const formData = new FormData(event.currentTarget);
+    try {
+      const result = await submitWaitlist(formData);
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMsg(result.error || "Failed to submit. Please try again.");
+      }
+    } catch (err) {
+      setErrorMsg("An unexpected error occurred. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -82,10 +111,17 @@ export function WaitlistForm() {
             I represent
           </label>
           <div className="wl-select-wrapper" ref={dropdownRef}>
-            <button
-              type="button"
+            <div
+              role="button"
+              tabIndex={0}
               className={`wl-select-trigger ${isOpen ? "active" : ""}`}
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={toggleDropdown}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggleDropdown();
+                }
+              }}
               aria-haspopup="listbox"
               aria-expanded={isOpen}
             >
@@ -108,23 +144,37 @@ export function WaitlistForm() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </button>
-            <ul className={`wl-select-options ${isOpen ? "open" : ""}`} role="listbox">
+            </div>
+            <select
+              className="wl-select-native"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              aria-label="Select category"
+            >
+              <option value="" disabled hidden>
+                Select category
+              </option>
               {CATEGORIES.map((cat) => (
-                <li
-                  key={cat}
-                  className={`wl-select-option ${category === cat ? "selected" : ""}`}
-                  role="option"
-                  aria-selected={category === cat}
-                  onClick={() => {
-                    setCategory(cat);
-                    setIsOpen(false);
-                  }}
-                >
+                <option key={cat} value={cat}>
                   {cat}
-                </li>
+                </option>
               ))}
-            </ul>
+            </select>
+            {isOpen && (
+              <ul className="wl-select-options open" role="listbox">
+                {CATEGORIES.map((cat) => (
+                  <li
+                    key={cat}
+                    className={`wl-select-option ${category === cat ? "selected" : ""}`}
+                    role="option"
+                    aria-selected={category === cat}
+                    onClick={() => handleSelectOption(cat)}
+                  >
+                    {cat}
+                  </li>
+                ))}
+              </ul>
+            )}
             <input type="hidden" name="category" value={category} required />
           </div>
         </div>
@@ -141,9 +191,27 @@ export function WaitlistForm() {
           placeholder="e.g. 10 MW AI compute cluster, colocation, cloud connectivity..."
         />
       </div>
+      {errorMsg && (
+        <div style={{ 
+          color: "var(--rnv-orange-light, #ef4444)", 
+          fontSize: "14px", 
+          marginTop: "12px", 
+          textAlign: "center",
+          padding: "8px",
+          border: "1px solid rgba(239, 68, 68, 0.2)",
+          background: "rgba(239, 68, 68, 0.05)"
+        }}>
+          {errorMsg}
+        </div>
+      )}
       {!submitted ? (
-        <button className="wl-submit" type="submit">
-          Register Interest →
+        <button 
+          className="wl-submit" 
+          type="submit" 
+          disabled={isLoading}
+          style={isLoading ? { opacity: 0.7, cursor: "not-allowed" } : undefined}
+        >
+          {isLoading ? "Registering..." : "Register Interest →"}
         </button>
       ) : (
         <div className="wl-success visible">

@@ -45,6 +45,7 @@ export default function TwitterImage() {
             </div>
             <div
               style={{
+                display: "flex",
                 fontSize: 42,
                 letterSpacing: 8,
                 color: "#1A1E24",
@@ -82,6 +83,7 @@ export default function TwitterImage() {
           </div>
           <div
             style={{
+              display: "flex",
               fontSize: 96,
               lineHeight: 0.92,
               letterSpacing: 2,
@@ -93,6 +95,7 @@ export default function TwitterImage() {
           </div>
           <div
             style={{
+              display: "flex",
               fontSize: 28,
               letterSpacing: 3,
               color: "#4A5568",
