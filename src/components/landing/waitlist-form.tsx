@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState, useRef, useEffect } from "react";
-import { submitWaitlist } from "@/app/actions";
 
 const CATEGORIES = [
   "Enterprise Client",
@@ -18,6 +17,13 @@ export function WaitlistForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  
+  // Controlled input states
+  const [name, setName] = useState("");
+  const [organisation, setOrganisation] = useState("");
+  const [email, setEmail] = useState("");
+  const [compute, setCompute] = useState("");
+  
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,13 +54,47 @@ export function WaitlistForm() {
     setIsLoading(true);
     setErrorMsg("");
 
-    const formData = new FormData(event.currentTarget);
+    const apiUrl = "/api/waitlist";
+
     try {
-      const result = await submitWaitlist(formData);
-      if (result.success) {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          organisation,
+          email,
+          category,
+          compute,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setSubmitted(true);
+        // Clear all states
+        setCategory("");
+        setName("");
+        setOrganisation("");
+        setEmail("");
+        setCompute("");
+
+        // Auto hide success message after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
       } else {
-        setErrorMsg(result.error || "Failed to submit. Please try again.");
+        if (data.errors && Array.isArray(data.errors)) {
+          const errorsFormatted = data.errors
+            .map((err: any) => `${err.field}: ${err.message}`)
+            .join(", ");
+          setErrorMsg(errorsFormatted || "Validation failed");
+        } else {
+          setErrorMsg(data.message || "Failed to submit. Please try again.");
+        }
       }
     } catch (err) {
       setErrorMsg("An unexpected error occurred. Please try again later.");
@@ -76,6 +116,8 @@ export function WaitlistForm() {
             type="text"
             name="name"
             placeholder="Your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
@@ -89,6 +131,8 @@ export function WaitlistForm() {
             type="text"
             name="organisation"
             placeholder="Your organisation"
+            value={organisation}
+            onChange={(e) => setOrganisation(e.target.value)}
           />
         </div>
       </div>
@@ -103,6 +147,8 @@ export function WaitlistForm() {
             type="email"
             name="email"
             placeholder="your@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -189,13 +235,15 @@ export function WaitlistForm() {
           type="text"
           name="compute"
           placeholder="e.g. 10 MW AI compute cluster, colocation, cloud connectivity..."
+          value={compute}
+          onChange={(e) => setCompute(e.target.value)}
         />
       </div>
       {errorMsg && (
-        <div style={{ 
-          color: "var(--rnv-orange-light, #ef4444)", 
-          fontSize: "14px", 
-          marginTop: "12px", 
+        <div style={{
+          color: "var(--rnv-orange-light, #ef4444)",
+          fontSize: "14px",
+          marginTop: "12px",
           textAlign: "center",
           padding: "8px",
           border: "1px solid rgba(239, 68, 68, 0.2)",
@@ -205,9 +253,9 @@ export function WaitlistForm() {
         </div>
       )}
       {!submitted ? (
-        <button 
-          className="wl-submit" 
-          type="submit" 
+        <button
+          className="wl-submit"
+          type="submit"
           disabled={isLoading}
           style={isLoading ? { opacity: 0.7, cursor: "not-allowed" } : undefined}
         >
