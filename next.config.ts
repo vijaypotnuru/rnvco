@@ -30,8 +30,10 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              // Next.js requires 'unsafe-inline' for its runtime; tighten with a nonce strategy later
-              "script-src 'self' 'unsafe-inline'",
+              // Next.js & React dev mode require 'unsafe-eval' for Fast Refresh / HMR debugging overlays
+              process.env.NODE_ENV === "development"
+                ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+                : "script-src 'self' 'unsafe-inline'",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob:",
