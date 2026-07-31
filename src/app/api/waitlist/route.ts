@@ -1,17 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { pool, initDb } from "@/lib/db";
 import { waitlistSchema } from "@/lib/waitlist";
 import { EmailService } from "@/lib/email";
 import { rateLimiter } from "@/lib/rateLimit";
-
-// Initialize tables automatically on first request to the database
-let dbInitialized = false;
-async function ensureDbInit() {
-  if (!dbInitialized) {
-    await initDb();
-    dbInitialized = true;
-  }
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -34,23 +24,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await ensureDbInit();
     const body = await req.json();
 
     // 2. Validate incoming data
     const validatedData = waitlistSchema.parse(body);
-
-    // // 2. Insert into PostgreSQL
-    // await pool.query(
-    //   "INSERT INTO waitlist (name, organisation, email, category, compute) VALUES ($1, $2, $3, $4, $5)",
-    //   [
-    //     validatedData.name,
-    //     validatedData.organisation || null,
-    //     validatedData.email,
-    //     validatedData.category,
-    //     validatedData.compute || null,
-    //   ]
-    // );
 
     // 3. Send emails
     await EmailService.sendWaitlistEmails(validatedData);
@@ -88,24 +65,12 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  try {
-    await ensureDbInit();
-    const result = await pool.query(
-      "SELECT * FROM waitlist ORDER BY created_at DESC"
-    );
-
-    return NextResponse.json({
-      success: true,
-      data: result.rows,
-    });
-  } catch (error: any) {
-    console.error("[Waitlist API] GET Failure:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        message: error.message || "Failed to fetch waitlist entries",
-      },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(
+    {
+      success: false,
+      message: "Database integration disabled.",
+    },
+    { status: 501 }
+  );
 }
+
