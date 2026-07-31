@@ -6,6 +6,20 @@ import {
   SITE_URL,
 } from "@/lib/site";
 
+/**
+ * Serialises a value as JSON, then escapes characters that could
+ * allow a </script> sequence to break out of the inline <script> tag.
+ * This is a defence-in-depth measure even though all current values
+ * are static constants.
+ */
+function safeJsonLd(value: unknown): string {
+  return JSON.stringify(value)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
+    .replace(/'/g, "\\u0027");
+}
+
 export function JsonLd() {
   const organizationId = `${SITE_URL}/#organization`;
   const websiteId = `${SITE_URL}/#website`;
@@ -81,7 +95,8 @@ export function JsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
     />
   );
 }
+

@@ -119,7 +119,7 @@ export class EmailService {
             <div class="field-group">
               <div class="field-label">Email Address</div>
               <div class="field-value">
-                <a href="mailto:${data.email}" style="color: #c8922a; text-decoration: none; font-weight: 500;">
+                <a href="mailto:${this.escapeHtml(data.email)}" style="color: #c8922a; text-decoration: none; font-weight: 500;">
                   ${this.escapeHtml(data.email)}
                 </a>
               </div>
@@ -244,15 +244,13 @@ export class EmailService {
   private static async safeSendMail(options: nodemailer.SendMailOptions): Promise<void> {
     try {
       if (!smtpHost || !smtpUser || !smtpPass) {
-        console.warn(`⚠️ [Email Service] SMTP settings not fully configured. Logging details to console instead.`);
-        console.log(`Email options:`, options);
+        console.warn(`⚠️ [Email Service] SMTP settings not fully configured. Email suppressed in this environment.`);
         return;
       }
       await transporter.sendMail(options);
     } catch (error: any) {
       if (process.env.NODE_ENV === 'development') {
-        console.warn(`⚠️ [Email Service] SMTP delivery failed. Falling back to console log:`, error.message);
-        console.log(`Email options:`, options);
+        console.warn(`⚠️ [Email Service] SMTP delivery failed:`, (error as Error).message);
         return;
       }
       throw error;

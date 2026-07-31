@@ -3,10 +3,32 @@ import { waitlistSchema } from "@/lib/waitlist";
 import { EmailService } from "@/lib/email";
 import { rateLimiter } from "@/lib/rateLimit";
 
+// Origins allowed to call this API
+const ALLOWED_ORIGINS = [
+  "https://rnvco.com",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+];
+
 export async function POST(req: NextRequest) {
   try {
-    // 1. Rate Limiting Check
-    const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "127.0.0.1";
+    // 1. CSRF — Origin check
+    const origin = req.headers.get("origin");
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+      return NextResponse.json(
+        { success: false, message: "Forbidden" },
+        { status: 403 }
+      );
+    }
+
+    // 2. Rate Limiting — trust x-real-ip (set by reverse proxy) first.
+    // When falling back to x-forwarded-for, take the LAST entry (the proxy),
+    // not the first (which is client-controlled and trivially forged).
+    const ip =
+      req.headers.get("x-real-ip") ||
+      req.headers.get("x-forwarded-for")?.split(",").at(-1)?.trim() ||
+      "127.0.0.1";
+
     const limitStatus = rateLimiter(ip);
 
     if (!limitStatus.allowed) {
@@ -26,10 +48,10 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
 
-    // 2. Validate incoming data
+    // 3. Validate incoming data
     const validatedData = waitlistSchema.parse(body);
 
-    // 3. Send emails
+    // 4. Send emails
     await EmailService.sendWaitlistEmails(validatedData);
 
     return NextResponse.json({
@@ -54,10 +76,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Never leak internal error details to the client in production
     return NextResponse.json(
       {
         success: false,
-        message: error.message || "An unexpected error occurred",
+        message:
+          process.env.NODE_ENV === "development"
+            ? (error.message ?? "An unexpected error occurred")
+            : "An unexpected error occurred. Please try again later.",
       },
       { status: 500 }
     );
@@ -73,4 +99,3 @@ export async function GET() {
     { status: 501 }
   );
 }
-

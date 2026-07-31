@@ -1,15 +1,9 @@
 "use client";
 
 import { FormEvent, useState, useRef, useEffect } from "react";
+import { WAITLIST_CATEGORIES } from "@/lib/waitlist";
 
-const CATEGORIES = [
-  "Enterprise Client",
-  "Investor",
-  "Government / PSU",
-  "Technology Partner",
-  "Research Institution",
-  "Other"
-];
+const CATEGORIES = [...WAITLIST_CATEGORIES];
 
 export function WaitlistForm() {
   const [submitted, setSubmitted] = useState(false);
